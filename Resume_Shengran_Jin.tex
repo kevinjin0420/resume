@@ -125,7 +125,7 @@
 \resumeItemListStart
 \resumeEntry{Cut response time for repeat creator queries from minutes to sub-second by precomputing outlines into a distributed KV cache the online endpoint checks first; raised the offline generation success rate from 55\% to 98\% by re-platforming generation and tuning retries and timeouts}
 \resumeEntry{Found and fixed a silent-success bug that had left a daily candidate-selection job emitting zero records for three weeks; rebuilt it in Flink SQL to correctly select up to 160,000 candidates against hard partition dependencies}
-\resumeEntry{Kept long-tail queries from training models on stale data with a Flink refresh pipeline that re-pushes features for 200M+ queries per run, triggered by Kafka change-data-capture events}
+\resumeEntry{Kept long-tail queries from training models on stale data with a Flink refresh pipeline that re-pushes features for 200M+ queries per run, triggered by Kafka change-data-capture events, and propagated model token identifiers onto the same query and user feature streams via a two-line config change}
 \resumeEntry{Replaced a prototype's local Python scripts with 10+ production Go Thrift RPCs covering ranked search, ASR/OCR, profiles, comments, and image generation for multimodal creator analysis}
 \resumeEntry{Matched the new Go RPCs' cache keys to the existing Python skill's, letting both paths share cache entries during migration instead of warming separate caches; cut repeat-analysis latency from 10 seconds to under 20ms, confirmed by a 27-RPC latency benchmark}
 \resumeEntry{Shipped a full-stack internal video generation tool in one week, handling async text- and image-to-video task state, polling, and terminal failure handling, with validated 10-second 720p output}
@@ -158,9 +158,9 @@
 \resumeSubItem{Programming Languages}
 {Python, C++, C, TypeScript, Java, Go, SQL, Kotlin}
 \resumeSubItem{Frameworks and Technologies}
-{FastAPI, Flask, ROS2, WebSockets, Kafka, Flink, Hive, Elasticsearch, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, Docker, Linux, Ansible}
+{FastAPI, Flask, Spring Boot, ROS2, WebSockets, Three.js, Kafka, Flink, Hive, Elasticsearch, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, Docker, Linux, Ansible}
 \resumeSubItem{Tools and Platforms}
-{Git, GitHub Actions, AWS, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
+{Git, GitHub Actions, Grafana, AWS, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
 \resumeSubHeadingListEnd
 
 \vspace*{\fill}
