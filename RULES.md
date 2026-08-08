@@ -8,7 +8,4 @@
   - Use "test runs" or "benchmark runs" instead of naming internal test environments.
 - It is fine to mention public company names and public technologies, such as TikTok, Go, Python, Thrift, RPC, Kafka, Flink, Hive, Elasticsearch, PostgreSQL, AWS, and Google Cloud.
 - Keep bullets achievement-oriented and concise. Preserve measurable scope where possible, such as RPC count, benchmark count, or latency/testing coverage.
-- When editing any `.tex` resume source, rebuild the corresponding PDF with `latexmk -pdf`.
-- Apply wording consistently across both resume variants when the same experience is described:
-  - `Resume_Shengran_Jin.tex` (default, backend-focused)
-  - `Resume_Shengran_Jin_Systems.tex`
+- When editing `Resume_Shengran_Jin.tex`, rebuild the corresponding PDF with `latexmk -pdf`.

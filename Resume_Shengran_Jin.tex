@@ -56,7 +56,7 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-5pt}
@@ -73,24 +73,22 @@
 
 \newcommand{\organization}[2]{
   \item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2\\
     \end{tabular*}
 }
 
 \newcommand{\position}[2]{
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
       \textbf{\small#1} & \textit{\small #2} \\
     \end{tabular*}\vspace{-14pt}
 }
 
 \newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-2pt}}
 
-\renewcommand{\labelitemii}{$\circ$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*, itemsep=1pt]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, labelsep=0in, label={}, itemsep=1pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\vspace{-4pt}\begin{itemize}[itemsep=1pt]}
+\newcommand{\resumeItemListStart}{\vspace{-4pt}\begin{itemize}[leftmargin=0.2in, labelsep=0.07in, label=$\bullet$, itemsep=3pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-8pt}}
 
 %-------------------------------------------
@@ -102,78 +100,68 @@
 
 %----------HEADING-----------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textbf{\Large Shengran (Kevin) Jin} &
-  kevinjin0420@gmail.com\\
-  \href{https://www.linkedin.com/in/kevinjin0420}{linkedin.com/in/kevinjin0420} $\cdot$ 
-  \href{https://github.com/kevinjin420}{github.com/kevinjin420} $\cdot$ 
-  \href{https://kevinjin.dev}{kevinjin.dev}&
-  +1-240-756-8098 \\
+	\textbf{\Large Shengran (Kevin) Jin} &
+	kevinjin0420@gmail.com\\
+	\href{https://www.linkedin.com/in/kevinjin0420}{linkedin.com/in/kevinjin0420} $\cdot$
+	\href{https://github.com/kevinjin420}{github.com/kevinjin420} $\cdot$
+	\href{https://kevinjin.dev}{kevinjin.dev}&
+	+1-240-756-8098 \\
 \end{tabular*}
 
 \vspace{-1mm}
 
 %-----------EDUCATION-----------------
 \section{Education}
-    \resumeSubheading
-      {University of Michigan, Ann Arbor}{Ann Arbor, MI}
-      {B.S.E. in Computer Engineering; GPA: 3.87 / 4.0}{Sep 2024 -- Present}
-
-%-----------SKILLS-----------------
-\section{Technical Skills}
-  \resumeSubHeadingListStart
-    \resumeSubItem{Programming Languages}
-        {Python, C++, C, TypeScript, Java, Go, SQL, Kotlin}
-    \resumeSubItem{Frameworks and Technologies}
-        {FastAPI, Flask, ROS2, WebSockets, Kafka, Flink, Hive, Elasticsearch, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, Docker, Linux, Ansible}
-    \resumeSubItem{Tools and Platforms}
-        {Git, GitHub Actions, AWS, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
-  \resumeSubHeadingListEnd
-
+\resumeSubheading
+{University of Michigan, Ann Arbor}{Ann Arbor, MI}
+{B.S.E. in Computer Engineering; GPA: 3.87 / 4.0}{Sep 2024 -- Present}
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
 \resumeSubHeadingListStart
 
-    \organization{TikTok}{San Jose, California}
-    \position{Backend Software Engineer Intern}{May 2026 -- July 2026}
-        \resumeItemListStart
-        \resumeEntry{Designed and shipped an offline LLM pipeline that precomputes outlines for hot queries into a Redis cache, offloading the online endpoint from live generation; raised success rate from roughly 55\% to 98\% by re-platforming generation and tuning retries and timeouts, and built a Flink SQL enqueue stage emitting 120,000 candidates daily with token and latency metrics and stage-tagged RPC errors in Grafana}
-        \resumeEntry{Engineered Flink pipelines that refresh features for 200M+ queries per run and propagate model token identifiers across query and user streams, sourcing from Hive and driven by Kafka change-data-capture (CDC) triggers}
-        \resumeEntry{Built Go services for multimodal creator analysis, ranked search, ASR and OCR, profiles, comments, and image generation, replacing local Python workflows with scalable Thrift RPCs}
-        \resumeEntry{Integrated asynchronous text- and image-to-video generation with configurable media inputs, persisted task state, polling, terminal failure handling, and validated 10-second 720p output}
-        \resumeEntry{Built a platform-wide feedback and reporting service with a single feature-agnostic Thrift RPC endpoint backed by region-local MySQL, a MySQL-to-Hive sync cron job, and a JSON-exploding view powering per-question analytics dashboards}
-        \resumeItemListEnd
+\organization{TikTok}{San Jose, CA}
+\position{Backend Software Engineer Intern}{May 2026 -- July 2026}
+\resumeItemListStart
+\resumeEntry{Cut response time for repeat creator queries from minutes to sub-second by precomputing outlines into a distributed KV cache the online endpoint checks first; raised the offline generation success rate from 55\% to 98\% by re-platforming generation and tuning retries and timeouts}
+\resumeEntry{Found and fixed a silent-success bug that had left a daily candidate-selection job emitting zero records for three weeks; rebuilt it in Flink SQL to correctly select up to 160,000 candidates against hard partition dependencies}
+\resumeEntry{Kept long-tail queries from training models on stale data with a Flink refresh pipeline that re-pushes features for 200M+ queries per run, triggered by Kafka change-data-capture events}
+\resumeEntry{Replaced a prototype's local Python scripts with 10+ production Go Thrift RPCs covering ranked search, ASR/OCR, profiles, comments, and image generation for multimodal creator analysis}
+\resumeEntry{Matched the new Go RPCs' cache keys to the existing Python skill's, letting both paths share cache entries during migration instead of warming separate caches; cut repeat-analysis latency from 10 seconds to under 20ms, confirmed by a 27-RPC latency benchmark}
+\resumeEntry{Shipped a full-stack internal video generation tool in one week, handling async text- and image-to-video task state, polling, and terminal failure handling, with validated 10-second 720p output}
+\resumeEntry{Replaced scattered feedback collection with one feature-agnostic Thrift endpoint backed by region-local MySQL, syncing to Hive to power per-question analytics dashboards}
+\resumeItemListEnd
 
-        
-    \organization{Jaseci Labs}{Ann Arbor, Michigan}
-    \position{Developer Advocate}{Oct. 2025 -- Present}
-        \resumeItemListStart
-        \resumeEntry{Built documentation benchmarking platform (React, Flask, PostgreSQL) with OpenRouter integration, achieving $<$0.025 coefficient of variance on 120+ automated test cases with multiple models and jaclang compiler validations}
-        \resumeEntry{Designed LLM-enabled MapReduce pipeline with concurrent processing to compress 1.2MB documentation into 10KB machine-readable format, achieving 93\% size reduction while maintaining critical information}
-        \resumeItemListEnd
-    
-    \organization{Michigan Mars Rover Student Project Team}{University of Michigan, Ann Arbor}
-    \position{Teleoperations Lead}{July 2025 -- Present}
-        \resumeItemListStart
-        \resumeEntry{Re-architected rover teleoperation backend from Django to FastAPI with 7 WebSocket channels and REST endpoints bridging ROS2 publishers, subscribers, and services, cutting round-trip latency 40\% by switching the serialization protocol to MessagePack}
-        \resumeEntry{Hardened backend infrastructure with a background ROS2 executor, cached service clients, async service wrappers, payload throttling and size guards, structured logging, and SQLite-backed waypoint and recording persistence}
-        \resumeEntry{Built automated testing tooling with mock ROS nodes, API tests, and browser-based integration coverage to exercise command, telemetry, and operator workflows}
-        \resumeEntry{Optimized a URDF and Three.js 3D rover visualization by replacing a full scene-graph traversal and linear joint lookup on every telemetry update with a precomputed hash map, cutting render cores from roughly 100\% to 40\% utilization and reducing thermal throttling under sustained field load}
-        \resumeItemListEnd
+
+\organization{Michigan Mars Rover Student Project Team}{Ann Arbor, MI}
+\position{Teleoperations Lead}{July 2025 -- July 2026}
+\resumeItemListStart
+\resumeEntry{Re-architected rover teleoperation backend from Django to FastAPI with 7 WebSocket channels and REST endpoints bridging ROS2 publishers, subscribers, and services, cutting round-trip latency 40\% by switching the serialization protocol to MessagePack}
+\resumeEntry{Hardened backend infrastructure with a background ROS2 executor, cached service clients, async service wrappers, payload throttling and size guards, structured logging, and SQLite-backed waypoint and recording persistence}
+\resumeEntry{Built automated testing tooling with mock ROS nodes, API tests, and browser-based integration coverage to exercise command, telemetry, and operator workflows}
+\resumeEntry{Optimized a URDF and Three.js 3D rover visualization by replacing a full scene-graph traversal and linear joint lookup on every telemetry update with a precomputed hash map, cutting render cores from roughly 100\% to 40\% utilization and reducing thermal throttling under sustained field load}
+\resumeItemListEnd
+
+
+\organization{Jaseci Labs}{Ann Arbor, MI}
+\position{Developer Advocate}{Oct. 2025 -- Present}
+\resumeItemListStart
+\resumeEntry{Built documentation benchmarking platform (React, Flask, PostgreSQL) with OpenRouter integration, achieving $<$0.025 coefficient of variance on 120+ automated test cases with multiple models and jaclang compiler validations}
+\resumeEntry{Designed LLM-enabled MapReduce pipeline with concurrent processing to compress 1.2MB documentation into 10KB machine-readable format, achieving 93\% size reduction while maintaining critical information}
+\resumeItemListEnd
 
 \resumeSubHeadingListEnd
 
-%-----------PROJECTS-----------------
-\section{Projects}
-  \resumeSubHeadingListStart
-
-    \resumeSubItem{TwitchPlus}{Twitch media recommendation backend and deployment}
-    \resumeItemListStart
-        \resumeEntry{Built a Spring Boot REST API with Spring Security authentication, MySQL persistence, and Caffeine caching for low-latency recommendation lookups}
-        \resumeEntry{Deployed on AWS using RDS for MySQL and App Runner, implementing content-based recommendations for personalized streaming suggestions}
-    \resumeItemListEnd
-
-  \resumeSubHeadingListEnd
+%-----------SKILLS-----------------
+\section{Technical Skills}
+\resumeSubHeadingListStart
+\resumeSubItem{Programming Languages}
+{Python, C++, C, TypeScript, Java, Go, SQL, Kotlin}
+\resumeSubItem{Frameworks and Technologies}
+{FastAPI, Flask, ROS2, WebSockets, Kafka, Flink, Hive, Elasticsearch, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, Docker, Linux, Ansible}
+\resumeSubItem{Tools and Platforms}
+{Git, GitHub Actions, AWS, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
+\resumeSubHeadingListEnd
 
 \vspace*{\fill}
 
