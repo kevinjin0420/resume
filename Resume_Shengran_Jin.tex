@@ -86,7 +86,7 @@
 
 \newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-2pt}}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, labelsep=0in, label={}, itemsep=1pt]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, labelsep=0in, label={}, itemsep=3pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\vspace{-4pt}\begin{itemize}[leftmargin=0.2in, labelsep=0.07in, label=$\bullet$, itemsep=3pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-8pt}}
@@ -123,33 +123,42 @@
 \organization{TikTok}{San Jose, CA}
 \position{Backend Software Engineer Intern}{May 2026 -- July 2026}
 \resumeItemListStart
-\resumeEntry{Cut response time for repeat creator queries from minutes to sub-second by precomputing outlines into a distributed KV cache the online endpoint checks first; raised the offline generation success rate from 55\% to 98\% by re-platforming generation and tuning retries and timeouts}
-\resumeEntry{Found and fixed a silent-success bug that had left a daily candidate-selection job emitting zero records for three weeks; rebuilt it in Flink SQL to correctly select up to 160,000 candidates against hard partition dependencies}
-\resumeEntry{Kept long-tail queries from training models on stale data with a Flink refresh pipeline that re-pushes features for 200M+ queries per run, triggered by Kafka change-data-capture events, and propagated model token identifiers onto the same query and user feature streams via a two-line config change}
-\resumeEntry{Replaced a prototype's local Python scripts with 10+ production Go Thrift RPCs covering ranked search, ASR/OCR, profiles, comments, and image generation for multimodal creator analysis}
-\resumeEntry{Matched the new Go RPCs' cache keys to the existing Python skill's, letting both paths share cache entries during migration instead of warming separate caches; cut repeat-analysis latency from 10 seconds to under 20ms, confirmed by a 27-RPC latency benchmark}
-\resumeEntry{Shipped a full-stack internal video generation tool in one week, handling async text- and image-to-video task state, polling, and terminal failure handling, with validated 10-second 720p output}
-\resumeEntry{Replaced scattered feedback collection with one feature-agnostic Thrift endpoint backed by region-local MySQL, syncing to Hive to power per-question analytics dashboards}
+\resumeEntry{Raised the success rate of an offline content-generation pipeline from 55\% to 98\% by optimizing prompts, refining retry and timeout logic, recalibrating safe request rates, and implementing stage-by-stage monitoring to detect failures early}
+\resumeEntry{Diagnosed and resolved a data-selection job that silently completed successfully while producing zero results for three weeks, then rebuilt it to reliably select up to 160,000 records per day}
+\resumeEntry{Replaced a prototype's local Python scripts with 12 production backend services, using a shared cache to reduce repeat-analysis time from 10 seconds to under 20 milliseconds}
+\resumeEntry{Developed and delivered an internal tool within one week that generates a validated 10-second video from text or images, reliably managing long-running generation jobs end to end}
+\resumeEntry{Consolidated scattered feedback collection tools into a single unified backend endpoint that powers per-question analytics dashboards}
 \resumeItemListEnd
 
 
 \organization{Michigan Mars Rover Student Project Team}{Ann Arbor, MI}
 \position{Teleoperations Lead}{July 2025 -- July 2026}
 \resumeItemListStart
-\resumeEntry{Re-architected rover teleoperation backend from Django to FastAPI with 7 WebSocket channels and REST endpoints bridging ROS2 publishers, subscribers, and services, cutting round-trip latency 40\% by switching the serialization protocol to MessagePack}
-\resumeEntry{Hardened backend infrastructure with a background ROS2 executor, cached service clients, async service wrappers, payload throttling and size guards, structured logging, and SQLite-backed waypoint and recording persistence}
-\resumeEntry{Built automated testing tooling with mock ROS nodes, API tests, and browser-based integration coverage to exercise command, telemetry, and operator workflows}
-\resumeEntry{Optimized a URDF and Three.js 3D rover visualization by replacing a full scene-graph traversal and linear joint lookup on every telemetry update with a precomputed hash map, cutting render cores from roughly 100\% to 40\% utilization and reducing thermal throttling under sustained field load}
+\resumeEntry{Rebuilt the rover's control backend using a higher-performance framework and data format, cutting round-trip command latency by 40\% and redesigning the WebSocket pipeline for synchronous, ordered delivery that eliminated dropped commands}
+\resumeEntry{Developed automated tests, including simulated hardware and browser-based checks, to validate the rover's command and telemetry workflows}
+\resumeEntry{Optimized the rover's 3D visualization to reduce rendering load by 60\%, mitigating thermal throttling on the control laptop during extended field operations}
+\resumeEntry{Implemented offline map caching and a live costmap overlay so the rover interface keeps working without an internet connection in the field}
 \resumeItemListEnd
 
 
 \organization{Jaseci Labs}{Ann Arbor, MI}
 \position{Developer Advocate}{Oct. 2025 -- Present}
 \resumeItemListStart
-\resumeEntry{Built documentation benchmarking platform (React, Flask, PostgreSQL) with OpenRouter integration, achieving $<$0.025 coefficient of variance on 120+ automated test cases with multiple models and jaclang compiler validations}
+\resumeEntry{Developed a documentation benchmarking platform achieving under 0.025 coefficient of variance across 120+ automated test cases against multiple AI models}
 \resumeEntry{Designed LLM-enabled MapReduce pipeline with concurrent processing to compress 1.2MB documentation into 10KB machine-readable format, achieving 93\% size reduction while maintaining critical information}
 \resumeItemListEnd
 
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\section{Projects}
+\resumeSubHeadingListStart
+\resumeSubItem{Job Alerts}{Internship alert platform with an LLM-screened, multi-source job feed}
+\resumeItemListStart
+\resumeEntry{Developed and maintain a platform that scrapes career sites across 9+ companies and job boards, notifying users within minutes of a new posting}
+\resumeEntry{Integrated an LLM classifier that screens each listing against a user's resume and preferences before alerting, automatically filtering out irrelevant postings}
+\resumeEntry{Deployed the scraper, classifier, and dashboard as independent AWS Lambda services backed by DynamoDB, with a web dashboard for managing sources and users}
+\resumeItemListEnd
 \resumeSubHeadingListEnd
 
 %-----------SKILLS-----------------
@@ -158,9 +167,9 @@
 \resumeSubItem{Programming Languages}
 {Python, C++, C, TypeScript, Java, Go, SQL, Kotlin}
 \resumeSubItem{Frameworks and Technologies}
-{FastAPI, Flask, Spring Boot, ROS2, WebSockets, Three.js, Kafka, Flink, Hive, Elasticsearch, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, Docker, Linux, Ansible}
+{FastAPI, Flask, Spring Boot, ROS2, WebSockets, Three.js, Kafka, Flink, Hive, Elasticsearch, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, DynamoDB, Docker, Linux, Ansible}
 \resumeSubItem{Tools and Platforms}
-{Git, GitHub Actions, Grafana, AWS, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
+{Git, GitHub Actions, Grafana, AWS, AWS Lambda, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
 \resumeSubHeadingListEnd
 
 \vspace*{\fill}
