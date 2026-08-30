@@ -19,8 +19,8 @@
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-0.53in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
 
 \raggedbottom
 \raggedright
@@ -96,8 +96,6 @@
 
 \begin{document}
 
-\vspace*{\fill}
-
 %----------HEADING-----------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
 	\textbf{\Large Shengran (Kevin) Jin} &
@@ -153,11 +151,11 @@
 %-----------PROJECTS-----------------
 \section{Projects}
 \resumeSubHeadingListStart
-\resumeSubItem{Job Alerts}{Internship alert platform with an LLM-screened, multi-source job feed}
+\resumeSubItem{Job Alerts}{Job alert platform with an LLM-screened, multi-source job feed}
 \resumeItemListStart
-\resumeEntry{Developed and maintain a platform that scrapes career sites across 9+ companies and job boards, notifying users within minutes of a new posting}
-\resumeEntry{Integrated an LLM classifier that screens each listing against a user's resume and preferences before alerting, automatically filtering out irrelevant postings}
-\resumeEntry{Deployed the scraper, classifier, and dashboard as independent AWS Lambda services backed by DynamoDB, with a web dashboard for managing sources and users}
+\resumeEntry{Developed and maintain a platform that scrapes career sites and job boards across 18 sources, notifying users within minutes of a new posting}
+\resumeEntry{Built an event-driven pipeline where a Lambda scraper fans out over SQS to enrichment and per-user classification workers, built on by Amazon Aurora DSQL with a thread-safe connection pool and optimistic-concurrency retry layer}
+\resumeEntry{Integrated a multi-pass LLM classifier that screens each listing against a user's resume and preferences before alerting, filtering out irrelevant postings}
 \resumeItemListEnd
 \resumeSubHeadingListEnd
 
@@ -167,11 +165,9 @@
 \resumeSubItem{Programming Languages}
 {Python, C++, C, TypeScript, Java, Go, SQL, Kotlin}
 \resumeSubItem{Frameworks and Technologies}
-{FastAPI, Flask, Spring Boot, ROS2, WebSockets, Three.js, Kafka, Flink, Hive, Elasticsearch, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, DynamoDB, Docker, Linux, Ansible}
+{FastAPI, Flask, Spring Boot, ROS2, WebSockets, Three.js, Kafka, Flink, Hive, Elasticsearch, SQS, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, Amazon DSQL, Docker, Linux, Ansible}
 \resumeSubItem{Tools and Platforms}
 {Git, GitHub Actions, Grafana, AWS, AWS Lambda, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
 \resumeSubHeadingListEnd
-
-\vspace*{\fill}
 
 \end{document}
