@@ -86,14 +86,16 @@
 
 \newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-2pt}}
 
-\newcommand{\projectHeading}[3]{
+\newcommand{\projectHeading}[4]{
   \item\small{
     \vspace{2pt}
     \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & \textit{\small #2} \\
+      \textbf{#1} & {\small #2} \\
     \end{tabular*}
-    \vspace{-9pt}\\
-    #3\vspace{3pt}
+    \vspace{-6pt}
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      #3 & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
   }
 }
 
@@ -123,7 +125,7 @@
 \section{Education}
 \resumeSubheading
 {University of Michigan, Ann Arbor}{Ann Arbor, MI}
-{B.S.E. in Computer Engineering; GPA: 3.87 / 4.0}{Sep 2024 -- Present}
+{B.S.E. in Computer Engineering; GPA: 3.87 / 4.0}{Sep 2024 -- May 2028 (Expected)}
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
@@ -132,18 +134,18 @@
 \organization{TikTok}{San Jose, CA}
 \position{Backend Software Engineer Intern}{May 2026 -- July 2026}
 \resumeItemListStart
-\resumeEntry{Raised the success rate of an offline content-generation pipeline from 55\% to 98\% by optimizing prompts, refining retry and timeout logic, recalibrating safe request rates, and implementing stage-by-stage monitoring to detect failures early}
-\resumeEntry{Diagnosed and resolved a data-selection job that silently completed successfully while producing zero results for three weeks, then rebuilt it to reliably select up to 160,000 records per day}
-\resumeEntry{Replaced a prototype's local Python scripts with 12 production backend services, using a shared cache to reduce repeat-analysis time from 10 seconds to under 20 milliseconds}
-\resumeEntry{Delivered an internal tool within one week that generates a validated 10-second video from text or images, managing long-running generation jobs end to end}
+\resumeEntry{Raised the success rate of a Go-based offline data processing pipeline from 55\% to 98\% by optimizing prompts, refining retry and timeout logic, recalibrating safe request rates, and implementing stage-by-stage metrics for failure detection}
+\resumeEntry{Diagnosed a Flink data-selection job that silently completed while producing zero results for three weeks, then rebuilt it to reliably select up to 160,000 records per day}
+\resumeEntry{Replaced a prototype's local Python scripts with 12 production Go backend services, using a shared cache to reduce repeat-analysis time from 10 seconds to under 20 milliseconds}
 \resumeItemListEnd
 
 
 \organization{Michigan Mars Rover Student Project Team}{Ann Arbor, MI}
 \position{Teleoperations Lead}{July 2025 -- July 2026}
 \resumeItemListStart
-\resumeEntry{Rebuilt the rover's control backend on an async FastAPI service with binary MessagePack framing in place of JSON, cutting round-trip command latency by 40\% and redesigning the WebSocket pipeline for ordered, synchronous delivery that eliminated dropped commands}
-\resumeEntry{Prototyping a MuJoCo-based C++ physics simulator to replace the team's GLFW/Bullet stack, enabling hardware-in-the-loop testing of the control software without the physical rover}
+\resumeEntry{Rebuilt the teleoperation backend on an async FastAPI server with per-subsystem WebSocket endpoints and MessagePack binary framing replacing JSON, cutting round-trip command latency by 40\%}
+\resumeEntry{Marshalled multi-threaded ROS2 topic callbacks onto a single asyncio event loop with lock-guarded cross-thread scheduling and per-topic rate limiting, providing ordered and reliable WebSocket delivery that eliminated dropped commands}
+\resumeEntry{Prototyped a MuJoCo-based C++ physics simulator intended to replace the team's GLFW/Bullet simulation stack for hardware-in-the-loop testing of the control and autonomy software stacks}
 \resumeEntry{Optimized the rover's 3D visualization to reduce rendering load by 60\%, mitigating thermal throttling on the control laptop, and added automated tests with simulated hardware and browser-based checks for the command and telemetry workflows}
 \resumeItemListEnd
 
@@ -153,13 +155,14 @@
 %-----------PROJECTS-----------------
 \section{Projects}
 \resumeSubHeadingListStart
-\projectHeading{Embedded Telescope}{\href{https://github.com/eecs373-w26-telescope}{github.com/eecs373-w26-telescope}}{Deep-sky object finder: STM32F4 firmware and a Raspberry Pi heads-up display (C++)}
+\projectHeading{Embedded Telescope}{\href{https://github.com/eecs373-w26-telescope}{github.com/eecs373-w26-telescope}}{STM32 and Raspberry Pi based deep-sky-object-seeking telescope}{C / C++}
 \resumeItemListStart
-\resumeEntry{Owned the Raspberry Pi HUD and most STM32 sensor drivers on a 4-person team (2.5 months); built a C++ hardware abstraction layer over the rotary encoders, IMU, GPS, and resistive touchscreen, plus a templated angular filter that averages in sin/cos space to survive wraparound}
-\resumeEntry{Designed a framed binary UART protocol with CRC-16 validation and a streaming state-machine decoder for ordered, corruption-checked telemetry between the two processors}
-\resumeEntry{Built the Pi heads-up display as a multithreaded raylib app: a POSIX serial reader thread runs the decoder and publishes telemetry through a mutex-guarded shared state to a 60 fps render loop drawing the live sky overlay and target-guidance vector}
+\resumeEntry{Owned the development of the Raspberry Pi HUD and the STM32 encoder, IMU, and GPS drivers on a 4-person team across two months, designing a C++ hardware abstraction layer with one class and namespace per peripheral}
+\resumeEntry{Wrote a templated running-average filter that averages angular sensor readings to stay accurate across wraparound}
+\resumeEntry{Designed a framed binary UART protocol with CRC-16 integrity checks and a streaming decoder that resynchronizes after corruption, giving ordered, validated, and reliable telemetry between the two processors}
+\resumeEntry{Architected the Pi heads-up display around a finite state machine, utilizing a background serial decoding thread integrated with a mutex-guarded shared state that drives a 60 fps Raylib render loop}
 \resumeItemListEnd
-\projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Job alert platform with an LLM-screened, multi-source job feed}
+\projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Personalized job-posting alert service built on a serverless, event-driven scraping pipeline}{Python}
 \resumeItemListStart
 \resumeEntry{Developed and maintain a platform that scrapes career sites and job boards across 18 sources, notifying users within minutes of a new posting}
 \resumeEntry{Built an event-driven pipeline where a Lambda scraper fans out over SQS to enrichment and per-user classification workers, backed by a thread-safe Aurora DSQL connection pool with an optimistic-concurrency retry layer}
@@ -171,9 +174,9 @@
 \section{Technical Skills}
 \resumeSubHeadingListStart
 \resumeSubItem{Programming Languages}
-{C++, C, Python, Go, Java, TypeScript, SQL, Kotlin}
+{C++, Go, Python, C, TypeScript, Java, SQL, Kotlin}
 \resumeSubItem{Frameworks and Technologies}
-{STM32 bare-metal, ROS2, FastAPI, Flask, Spring Boot, WebSockets, gRPC, Protobuf, MessagePack, Three.js, Kafka, Redis, PostgreSQL, MySQL, SQLite, Amazon Aurora DSQL, Docker, Linux}
+{STM32 bare-metal, ROS2, FastAPI, Flask, Spring Boot, WebSockets, gRPC, Protobuf, MessagePack, Three.js, Kafka, Flink, Spark, Redis, PostgreSQL, MySQL, SQLite, Amazon Aurora DSQL, Docker, Linux}
 \resumeSubItem{Tools and Platforms}
 {Git, GitHub Actions, CMake, AWS (Lambda, SQS), Google Cloud, Grafana, Shell, \LaTeX}
 \resumeSubHeadingListEnd
