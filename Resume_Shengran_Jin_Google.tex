@@ -132,7 +132,7 @@
 \resumeSubHeadingListStart
 
 \organization{TikTok}{San Jose, CA}
-\position{Backend Software Engineer Intern}{May 2026 -- July 2026}
+\position{Backend Software Engineer Intern}{May 2026 - July 2026}
 \resumeItemListStart
 \resumeEntry{Raised the success rate of a Go-based offline data processing pipeline from 55\% to 98\% by optimizing prompts, refining retry and timeout logic, recalibrating safe request rates, and implementing stage-by-stage metrics for failure detection}
 \resumeEntry{Diagnosed a Flink data-selection job that silently completed while producing zero results for three weeks, then rebuilt it to reliably select up to 160,000 records per day}
@@ -141,7 +141,7 @@
 
 
 \organization{Michigan Mars Rover Student Project Team}{Ann Arbor, MI}
-\position{Teleoperations Lead}{July 2025 -- July 2026}
+\position{Teleoperations Lead}{July 2025 - July 2026}
 \resumeItemListStart
 \resumeEntry{Rebuilt the teleoperation backend on an async FastAPI server with per-subsystem WebSocket endpoints and MessagePack binary framing replacing JSON, cutting round-trip command latency by 40\%}
 \resumeEntry{Marshalled multi-threaded ROS2 topic callbacks onto a single asyncio event loop with lock-guarded cross-thread scheduling and per-topic rate limiting, providing ordered and reliable WebSocket delivery that eliminated dropped commands}
@@ -164,9 +164,9 @@
 \resumeItemListEnd
 \projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Personalized job-posting alert service built on a serverless, event-driven scraping pipeline}{Python}
 \resumeItemListStart
-\resumeEntry{Developed and maintain a platform that scrapes career sites and job boards across 18 sources, notifying users within minutes of a new posting}
-\resumeEntry{Built an event-driven pipeline where a Lambda scraper fans out over SQS to enrichment and per-user classification workers, backed by a thread-safe Aurora DSQL connection pool with an optimistic-concurrency retry layer}
-\resumeEntry{Integrated a multi-pass LLM classifier that screens each listing against a user's resume and preferences before alerting, filtering out irrelevant postings}
+\resumeEntry{Built a serverless pipeline that offloads enrichment and per-user classification to independently scaling SQS workers, keeping signup-driven classification load off the scan Lambda's fixed 5-minute budget}
+\resumeEntry{Wrote a thread-safe Aurora DSQL connection pool that replaced a single lock-contended connection, improving read latency and throughput under the scan Lambda's concurrent workload, with an optimistic-concurrency retry layer for write conflicts}
+\resumeEntry{Designed a URL-derived canonical identity scheme that resolves the same posting reported by multiple sources under different URLs to one key, biased to avoid dropped listings over duplicate alerts}
 \resumeItemListEnd
 \resumeSubHeadingListEnd
 
