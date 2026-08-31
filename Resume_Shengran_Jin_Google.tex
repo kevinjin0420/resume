@@ -86,6 +86,17 @@
 
 \newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-2pt}}
 
+\newcommand{\projectHeading}[3]{
+  \item\small{
+    \vspace{2pt}
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{\small #2} \\
+    \end{tabular*}
+    \vspace{-9pt}\\
+    #3\vspace{3pt}
+  }
+}
+
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, labelsep=0in, label={}, itemsep=3pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\vspace{-4pt}\begin{itemize}[leftmargin=0.2in, labelsep=0.07in, label=$\bullet$, itemsep=3pt]}
@@ -101,7 +112,7 @@
 	\textbf{\Large Shengran (Kevin) Jin} &
 	kevinjin0420@gmail.com\\
 	\href{https://www.linkedin.com/in/kevinjin0420}{linkedin.com/in/kevinjin0420} $\cdot$
-	\href{https://github.com/kevinjin420}{github.com/kevinjin420} $\cdot$
+	\href{https://github.com/kevinjin0420}{github.com/kevinjin0420} $\cdot$
 	\href{https://kevinjin.dev}{kevinjin.dev}&
 	+1-240-756-8098 \\
 \end{tabular*}
@@ -124,37 +135,34 @@
 \resumeEntry{Raised the success rate of an offline content-generation pipeline from 55\% to 98\% by optimizing prompts, refining retry and timeout logic, recalibrating safe request rates, and implementing stage-by-stage monitoring to detect failures early}
 \resumeEntry{Diagnosed and resolved a data-selection job that silently completed successfully while producing zero results for three weeks, then rebuilt it to reliably select up to 160,000 records per day}
 \resumeEntry{Replaced a prototype's local Python scripts with 12 production backend services, using a shared cache to reduce repeat-analysis time from 10 seconds to under 20 milliseconds}
-\resumeEntry{Developed and delivered an internal tool within one week that generates a validated 10-second video from text or images, reliably managing long-running generation jobs end to end}
-\resumeEntry{Consolidated scattered feedback collection tools into a single unified backend endpoint that powers per-question analytics dashboards}
+\resumeEntry{Delivered an internal tool within one week that generates a validated 10-second video from text or images, managing long-running generation jobs end to end}
 \resumeItemListEnd
 
 
 \organization{Michigan Mars Rover Student Project Team}{Ann Arbor, MI}
 \position{Teleoperations Lead}{July 2025 -- July 2026}
 \resumeItemListStart
-\resumeEntry{Rebuilt the rover's control backend using a higher-performance framework and data format, cutting round-trip command latency by 40\% and redesigning the WebSocket pipeline for synchronous, ordered delivery that eliminated dropped commands}
-\resumeEntry{Developed automated tests, including simulated hardware and browser-based checks, to validate the rover's command and telemetry workflows}
-\resumeEntry{Optimized the rover's 3D visualization to reduce rendering load by 60\%, mitigating thermal throttling on the control laptop during extended field operations}
-\resumeEntry{Implemented offline map caching and a live costmap overlay so the rover interface keeps working without an internet connection in the field}
+\resumeEntry{Rebuilt the rover's control backend on an async FastAPI service with binary MessagePack framing in place of JSON, cutting round-trip command latency by 40\% and redesigning the WebSocket pipeline for ordered, synchronous delivery that eliminated dropped commands}
+\resumeEntry{Prototyping a MuJoCo-based C++ physics simulator to replace the team's GLFW/Bullet stack, enabling hardware-in-the-loop testing of the control software without the physical rover}
+\resumeEntry{Optimized the rover's 3D visualization to reduce rendering load by 60\%, mitigating thermal throttling on the control laptop, and added automated tests with simulated hardware and browser-based checks for the command and telemetry workflows}
 \resumeItemListEnd
 
-
-\organization{Jaseci Labs}{Ann Arbor, MI}
-\position{Developer Advocate}{Oct. 2025 -- Present}
-\resumeItemListStart
-\resumeEntry{Developed a documentation benchmarking platform achieving under 0.025 coefficient of variance across 120+ automated test cases against multiple AI models}
-\resumeEntry{Designed LLM-enabled MapReduce pipeline with concurrent processing to compress 1.2MB documentation into 10KB machine-readable format, achieving 93\% size reduction while maintaining critical information}
-\resumeItemListEnd
 
 \resumeSubHeadingListEnd
 
 %-----------PROJECTS-----------------
 \section{Projects}
 \resumeSubHeadingListStart
-\resumeSubItem{Job Alerts}{Job alert platform with an LLM-screened, multi-source job feed}
+\projectHeading{Embedded Telescope}{\href{https://github.com/eecs373-w26-telescope}{github.com/eecs373-w26-telescope}}{Deep-sky object finder: STM32F4 firmware and a Raspberry Pi heads-up display (C++)}
+\resumeItemListStart
+\resumeEntry{Owned the Raspberry Pi HUD and most STM32 sensor drivers on a 4-person team (2.5 months); built a C++ hardware abstraction layer over the rotary encoders, IMU, GPS, and resistive touchscreen, plus a templated angular filter that averages in sin/cos space to survive wraparound}
+\resumeEntry{Designed a framed binary UART protocol with CRC-16 validation and a streaming state-machine decoder for ordered, corruption-checked telemetry between the two processors}
+\resumeEntry{Built the Pi heads-up display as a multithreaded raylib app: a POSIX serial reader thread runs the decoder and publishes telemetry through a mutex-guarded shared state to a 60 fps render loop drawing the live sky overlay and target-guidance vector}
+\resumeItemListEnd
+\projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Job alert platform with an LLM-screened, multi-source job feed}
 \resumeItemListStart
 \resumeEntry{Developed and maintain a platform that scrapes career sites and job boards across 18 sources, notifying users within minutes of a new posting}
-\resumeEntry{Built an event-driven pipeline where a Lambda scraper fans out over SQS to enrichment and per-user classification workers, built on by Amazon Aurora DSQL with a thread-safe connection pool and optimistic-concurrency retry layer}
+\resumeEntry{Built an event-driven pipeline where a Lambda scraper fans out over SQS to enrichment and per-user classification workers, backed by a thread-safe Aurora DSQL connection pool with an optimistic-concurrency retry layer}
 \resumeEntry{Integrated a multi-pass LLM classifier that screens each listing against a user's resume and preferences before alerting, filtering out irrelevant postings}
 \resumeItemListEnd
 \resumeSubHeadingListEnd
@@ -163,11 +171,11 @@
 \section{Technical Skills}
 \resumeSubHeadingListStart
 \resumeSubItem{Programming Languages}
-{C++, Python, Go, C, TypeScript, SQL, Java, Kotlin}
+{C++, C, Python, Go, Java, TypeScript, SQL, Kotlin}
 \resumeSubItem{Frameworks and Technologies}
-{FastAPI, Flask, Spring Boot, ROS2, WebSockets, Three.js, Kafka, Flink, Hive, Elasticsearch, SQS, RPC, Thrift, Kitex, MessagePack, Protobuf, SQLAlchemy, Redis, PostgreSQL, MySQL, SQLite, Amazon DSQL, Docker, Linux, Ansible}
+{STM32 bare-metal, ROS2, FastAPI, Flask, Spring Boot, WebSockets, gRPC, Protobuf, MessagePack, Three.js, Kafka, Redis, PostgreSQL, MySQL, SQLite, Amazon Aurora DSQL, Docker, Linux}
 \resumeSubItem{Tools and Platforms}
-{Git, GitHub Actions, Grafana, AWS, AWS Lambda, Google Cloud, Shell, \LaTeX, VSCode, IntelliJ IDEA, Postman}
+{Git, GitHub Actions, CMake, AWS (Lambda, SQS), Google Cloud, Grafana, Shell, \LaTeX}
 \resumeSubHeadingListEnd
 
 \end{document}
