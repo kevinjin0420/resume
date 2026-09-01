@@ -137,7 +137,8 @@
 \organization{TikTok}{San Jose, CA}
 \position{Backend Software Engineer Intern}{May 2026 - July 2026}
 \resumeItemListStart
-\resumeEntry{Raised a Go and Flink data-processing pipeline from 55\% to 98\% success rate at up to 160,000 records per day by hardening retry and timeout logic, rebuilt the ingestion stage with schema validation, deduplication, and normalization, added per-stage failure and anomaly detection, and backfilled three weeks of silently lost data}
+\resumeEntry{Raised a Go and Flink data-processing pipeline from a 55\% to 98\% success rate at up to 160,000 records per day by hardening retry, timeout, and failure-recovery logic across stages}
+\resumeEntry{Rebuilt the ingestion stage with schema validation, deduplication, and normalization, added per-stage anomaly detection, and backfilled three weeks of silently dropped data}
 \resumeEntry{Redesigned a monolithic Python prototype into 12 Go microservices behind a cache-first serving layer, defining service boundaries and request contracts, cutting repeat-analysis latency from 10 seconds to under 20 milliseconds}
 \resumeEntry{Shipped features across an unfamiliar large-scale backend, clearing blockers by consulting service owners directly and negotiating API contracts with the frontend team}
 \resumeItemListEnd
@@ -149,7 +150,7 @@
 \resumeEntry{Rebuilt the teleoperation backend on an async FastAPI server with per-subsystem WebSocket endpoints and MessagePack binary framing replacing JSON, cutting round-trip command latency by 40\%}
 \resumeEntry{Marshalled multi-threaded ROS2 callbacks onto a single asyncio event loop with lock-guarded scheduling and per-topic rate limiting, giving ordered WebSocket delivery that eliminated dropped commands}
 \resumeEntry{Prototyped a MuJoCo-based C++ physics simulator intended to replace the team's GLFW/Bullet simulation stack for hardware-in-the-loop testing of the control and autonomy software stacks}
-\resumeEntry{Cut the rover's 3D visualization rendering load by 60\% to stop thermal throttling on the control laptop, and added automated tests with mock hardware and browser checks for the command and telemetry workflows}
+\resumeEntry{Cut the rover's 3D visualization rendering load by 60\% to stop thermal throttling on the control laptop}
 \resumeItemListEnd
 
 
@@ -160,14 +161,15 @@
 \resumeSubHeadingListStart
 \projectHeading{Embedded Telescope}{\href{https://github.com/eecs373-w26-telescope}{github.com/eecs373-w26-telescope}}{STM32 and Raspberry Pi based deep-sky-object-seeking telescope}{C / C++}
 \resumeItemListStart
-\resumeEntry{Owned the Raspberry Pi HUD and the STM32 encoder, IMU, and GPS drivers on a 4-person team across two months, designing a C++ hardware abstraction layer that wraps each sensor in a uniform peripheral class with RAII-managed bus handles, and a templated running-average filter over angular readings that stays accurate across wraparound}
+\resumeEntry{Owned the Raspberry Pi HUD and the STM32 encoder, IMU, and GPS drivers on a 4-person team, designing a C++ hardware abstraction layer that wraps each sensor in a uniform peripheral class with RAII-managed bus handles}
+\resumeEntry{Wrote a templated running-average filter over angular sensor readings that stays accurate across wraparound}
 \resumeEntry{Designed a framed binary UART protocol with CRC-16 integrity checks and a streaming decoder that resynchronizes after corruption, giving ordered, validated, and reliable telemetry between the two processors}
 \resumeEntry{Architected the Pi heads-up display around a finite state machine, utilizing a background serial decoding thread integrated with a mutex-guarded shared state that drives a 60 fps Raylib render loop}
 \resumeItemListEnd
 \projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Personalized job-posting alert service built on a serverless, event-driven scraping pipeline}{Python}
 \resumeItemListStart
-\resumeEntry{Built a serverless pipeline that offloads enrichment and per-user classification to independently scaling SQS workers, keeping signup-driven classification load off the scan Lambda's fixed 5-minute budget}
-\resumeEntry{Wrote a thread-safe Aurora DSQL connection pool that replaced a single lock-contended connection, improving read latency and throughput under concurrent load, with optimistic-concurrency retries for write conflicts}
+\resumeEntry{Architected a serverless pipeline that offloads enrichment and per-user classification to independently scaling SQS workers, keeping signup-driven classification load off the scan Lambda's fixed 5-minute budget}
+\resumeEntry{Re-architected the read path from multiple NoSQL lookups to a single Aurora DSQL query behind a thread-safe connection pool with optimistic-concurrency retries, cutting request latency from 5 seconds to under 1}
 \resumeEntry{Designed a URL-derived canonical key that resolves the same posting seen from multiple sources under different URLs, biased to avoid dropped listings over duplicate alerts}
 \resumeItemListEnd
 \resumeSubHeadingListEnd
