@@ -134,9 +134,9 @@
 \organization{TikTok}{San Jose, CA}
 \position{Backend Software Engineer Intern}{May 2026 - July 2026}
 \resumeItemListStart
-\resumeEntry{Raised the success rate of a Go-based offline data processing pipeline from 55\% to 98\% by optimizing prompts, refining retry and timeout logic, recalibrating safe request rates, and implementing stage-by-stage metrics for failure detection}
-\resumeEntry{Diagnosed a Flink data-selection job that silently completed while producing zero results for three weeks, then rebuilt it to reliably select up to 160,000 records per day}
-\resumeEntry{Replaced a prototype's local Python scripts with 12 production Go backend services, using a shared cache to reduce repeat-analysis time from 10 seconds to under 20 milliseconds}
+\resumeEntry{Raised a Go and Flink data-processing pipeline from 55\% to 98\% success rate at up to 160,000 records per day by hardening retry and timeout logic, rebuilt the ingestion stage with schema validation, deduplication, and normalization, added per-stage failure and anomaly detection, and backfilled three weeks of silently lost data}
+\resumeEntry{Decomposed a prototype's monolithic Python scripts into 12 cache-first Go microservices, cutting repeat-analysis latency from 10 seconds to under 20 milliseconds}
+\resumeEntry{Shipped features across an unfamiliar large-scale backend, clearing blockers by consulting service owners directly and negotiating API contracts with the frontend team}
 \resumeItemListEnd
 
 
@@ -144,9 +144,9 @@
 \position{Teleoperations Lead}{July 2025 - July 2026}
 \resumeItemListStart
 \resumeEntry{Rebuilt the teleoperation backend on an async FastAPI server with per-subsystem WebSocket endpoints and MessagePack binary framing replacing JSON, cutting round-trip command latency by 40\%}
-\resumeEntry{Marshalled multi-threaded ROS2 topic callbacks onto a single asyncio event loop with lock-guarded cross-thread scheduling and per-topic rate limiting, providing ordered and reliable WebSocket delivery that eliminated dropped commands}
+\resumeEntry{Marshalled multi-threaded ROS2 callbacks onto a single asyncio event loop with lock-guarded scheduling and per-topic rate limiting, giving ordered WebSocket delivery that eliminated dropped commands}
 \resumeEntry{Prototyped a MuJoCo-based C++ physics simulator intended to replace the team's GLFW/Bullet simulation stack for hardware-in-the-loop testing of the control and autonomy software stacks}
-\resumeEntry{Optimized the rover's 3D visualization to reduce rendering load by 60\%, mitigating thermal throttling on the control laptop, and added automated tests with simulated hardware and browser-based checks for the command and telemetry workflows}
+\resumeEntry{Cut the rover's 3D visualization rendering load by 60\% to stop thermal throttling on the control laptop, and added automated tests with mock hardware and browser checks for the command and telemetry workflows}
 \resumeItemListEnd
 
 
@@ -165,8 +165,8 @@
 \projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Personalized job-posting alert service built on a serverless, event-driven scraping pipeline}{Python}
 \resumeItemListStart
 \resumeEntry{Built a serverless pipeline that offloads enrichment and per-user classification to independently scaling SQS workers, keeping signup-driven classification load off the scan Lambda's fixed 5-minute budget}
-\resumeEntry{Wrote a thread-safe Aurora DSQL connection pool that replaced a single lock-contended connection, improving read latency and throughput under the scan Lambda's concurrent workload, with an optimistic-concurrency retry layer for write conflicts}
-\resumeEntry{Designed a URL-derived canonical identity scheme that resolves the same posting reported by multiple sources under different URLs to one key, biased to avoid dropped listings over duplicate alerts}
+\resumeEntry{Wrote a thread-safe Aurora DSQL connection pool that replaced a single lock-contended connection, improving read latency and throughput under concurrent load, with optimistic-concurrency retries for write conflicts}
+\resumeEntry{Designed a URL-derived canonical key that resolves the same posting seen from multiple sources under different URLs, biased to avoid dropped listings over duplicate alerts}
 \resumeItemListEnd
 \resumeSubHeadingListEnd
 
@@ -176,7 +176,7 @@
 \resumeSubItem{Programming Languages}
 {C++, Go, Python, C, TypeScript, Java, SQL, Kotlin}
 \resumeSubItem{Frameworks and Technologies}
-{STM32 bare-metal, ROS2, FastAPI, Flask, Spring Boot, WebSockets, gRPC, Protobuf, MessagePack, Three.js, Kafka, Flink, Spark, Redis, PostgreSQL, MySQL, SQLite, Amazon Aurora DSQL, Docker, Linux}
+{Linux, Docker, gRPC, Protobuf, MessagePack, Kafka, Flink, Spark, Redis, WebSockets, FastAPI, Flask, Spring Boot, PostgreSQL, MySQL, SQLite, Amazon Aurora DSQL, Three.js, ROS2, STM32 bare-metal}
 \resumeSubItem{Tools and Platforms}
 {Git, GitHub Actions, CMake, AWS (Lambda, SQS), Google Cloud, Grafana, Shell, \LaTeX}
 \resumeSubHeadingListEnd
