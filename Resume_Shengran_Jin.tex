@@ -126,6 +126,9 @@
 \resumeSubheading
 {University of Michigan, Ann Arbor}{Ann Arbor, MI}
 {B.S.E. in Computer Engineering; GPA: 3.87 / 4.0}{Sep 2024 -- May 2028 (Expected)}
+\resumeSubHeadingListStart
+\resumeItem{Relevant Coursework}{Data Structures \& Algorithms (EECS 281), Operating Systems (EECS 482), Computer Organization (EECS 370), Web Systems (EECS 485), Machine Learning (EECS 445), Computer Security (EECS 388)}
+\resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
@@ -135,7 +138,7 @@
 \position{Backend Software Engineer Intern}{May 2026 - July 2026}
 \resumeItemListStart
 \resumeEntry{Raised a Go and Flink data-processing pipeline from 55\% to 98\% success rate at up to 160,000 records per day by hardening retry and timeout logic, rebuilt the ingestion stage with schema validation, deduplication, and normalization, added per-stage failure and anomaly detection, and backfilled three weeks of silently lost data}
-\resumeEntry{Decomposed a prototype's monolithic Python scripts into 12 cache-first Go microservices, cutting repeat-analysis latency from 10 seconds to under 20 milliseconds}
+\resumeEntry{Redesigned a monolithic Python prototype into 12 Go microservices behind a cache-first serving layer, defining service boundaries and request contracts, cutting repeat-analysis latency from 10 seconds to under 20 milliseconds}
 \resumeEntry{Shipped features across an unfamiliar large-scale backend, clearing blockers by consulting service owners directly and negotiating API contracts with the frontend team}
 \resumeItemListEnd
 
@@ -157,8 +160,7 @@
 \resumeSubHeadingListStart
 \projectHeading{Embedded Telescope}{\href{https://github.com/eecs373-w26-telescope}{github.com/eecs373-w26-telescope}}{STM32 and Raspberry Pi based deep-sky-object-seeking telescope}{C / C++}
 \resumeItemListStart
-\resumeEntry{Owned the development of the Raspberry Pi HUD and the STM32 encoder, IMU, and GPS drivers on a 4-person team across two months, designing a C++ hardware abstraction layer with one class and namespace per peripheral}
-\resumeEntry{Wrote a templated running-average filter that averages angular sensor readings to stay accurate across wraparound}
+\resumeEntry{Owned the Raspberry Pi HUD and the STM32 encoder, IMU, and GPS drivers on a 4-person team across two months, designing a C++ hardware abstraction layer that wraps each sensor in a uniform peripheral class with RAII-managed bus handles, and a templated running-average filter over angular readings that stays accurate across wraparound}
 \resumeEntry{Designed a framed binary UART protocol with CRC-16 integrity checks and a streaming decoder that resynchronizes after corruption, giving ordered, validated, and reliable telemetry between the two processors}
 \resumeEntry{Architected the Pi heads-up display around a finite state machine, utilizing a background serial decoding thread integrated with a mutex-guarded shared state that drives a 60 fps Raylib render loop}
 \resumeItemListEnd
@@ -177,6 +179,8 @@
 {C++, Go, Python, C, TypeScript, Java, SQL, Kotlin}
 \resumeSubItem{Frameworks and Technologies}
 {Linux, Docker, gRPC, Protobuf, MessagePack, Kafka, Flink, Spark, Redis, WebSockets, FastAPI, Flask, Spring Boot, PostgreSQL, MySQL, SQLite, Amazon Aurora DSQL, Three.js, ROS2, STM32 bare-metal}
+\resumeSubItem{Concepts}
+{Object-Oriented Design, Distributed Systems, System Design, Concurrency, RESTful and WebSocket APIs}
 \resumeSubItem{Tools and Platforms}
 {Git, GitHub Actions, CMake, AWS (Lambda, SQS), Google Cloud, Grafana, Shell, \LaTeX}
 \resumeSubHeadingListEnd
