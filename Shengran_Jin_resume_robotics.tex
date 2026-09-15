@@ -1,0 +1,189 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generated PDF is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \vspace{2pt}\textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeEntry}[1]{
+    \item\small{
+        \vspace{-2pt}{#1}\vspace{0pt}
+    }
+}
+
+\newcommand{\resumeHeading}[4]{
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheading}[4]{
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}
+}
+
+
+%----------Experience-----------------
+
+\newcommand{\organization}[2]{
+  \item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2\\
+    \end{tabular*}
+}
+
+\newcommand{\position}[2]{
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-14pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-2pt}}
+
+\newcommand{\projectHeading}[4]{
+  \item\small{
+    \vspace{2pt}
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\small #2} \\
+    \end{tabular*}
+    \vspace{-6pt}
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      #3 & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+  }
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, labelsep=0in, label={}, itemsep=3pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\vspace{-4pt}\begin{itemize}[leftmargin=0.2in, labelsep=0.07in, label=$\bullet$, itemsep=3pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-8pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+	\textbf{\Large Shengran (Kevin) Jin} &
+	kevinjin0420@gmail.com\\
+	\href{https://www.linkedin.com/in/kevinjin0420}{linkedin.com/in/kevinjin0420} $\cdot$
+	\href{https://github.com/kevinjin0420}{github.com/kevinjin0420} $\cdot$
+	\href{https://kevinjin.dev}{kevinjin.dev}&
+	+1-240-756-8098 \\
+\end{tabular*}
+
+\vspace{-1mm}
+
+%-----------EDUCATION-----------------
+\section{Education}
+\resumeSubheading
+{University of Michigan, Ann Arbor}{Ann Arbor, MI}
+{B.S.E. in Computer Engineering; GPA: 3.87 / 4.0}{Sep 2024 - May 2028 (Expected)}
+\resumeSubHeadingListStart
+\resumeItem{Relevant Coursework}{Data Structures \& Algorithms (EECS 281), Operating Systems (EECS 482), Computer Organization (EECS 370), Web Systems (EECS 485), Machine Learning (EECS 445), Computer Security (EECS 388)}
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------------
+\section{Experience}
+\resumeSubHeadingListStart
+
+\organization{Michigan Mars Rover Student Project Team}{Ann Arbor, MI}
+\position{Teleoperations Lead}{July 2025 - July 2026}
+\resumeItemListStart
+\resumeEntry{Redesigned the teleoperation backend on an async FastAPI server with per-subsystem WebSocket endpoints and MessagePack binary framing replacing JSON, cutting round-trip command latency by 40\%}
+\resumeEntry{Marshalled multi-threaded ROS2 callbacks onto a single asyncio event loop with lock-guarded scheduling and per-topic rate limiting, giving ordered WebSocket delivery that eliminated dropped commands}
+\resumeEntry{Implemented inverse-kinematics position and velocity control modes for the rover's robotic arm, wiring a ROS2 service client into the teleoperation backend to switch control modes and stream commands to the arm's control nodes}
+\resumeEntry{Prototyped a MuJoCo-based C++ physics simulator intended to replace the team's GLFW/Bullet simulation stack for hardware-in-the-loop testing of the control and autonomy software stacks}
+\resumeItemListEnd
+
+
+\organization{TikTok}{San Jose, CA}
+\position{Backend Software Engineer Intern}{May 2026 - July 2026}
+\resumeItemListStart
+\resumeEntry{Rebuilt the ingestion stage of a Go and Flink pipeline with schema validation, deduplication, and per-stage anomaly detection, comparing live output against expected behavior to backfill three weeks of silently dropped data}
+\resumeEntry{Raised the pipeline's success rate from 55\% to 98\% at up to 160,000 records per day by hardening retry, timeout, and failure-recovery logic across stages, validated against a Grafana dashboard}
+\resumeEntry{Ported a monolithic Python prototype into 12 Go microservices behind a cache-first serving layer, defining service boundaries and request contracts to move validated prototype logic into production}
+\resumeItemListEnd
+
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\section{Projects}
+\resumeSubHeadingListStart
+\projectHeading{Embedded Telescope}{\href{https://github.com/eecs373-w26-telescope}{github.com/eecs373-w26-telescope}}{STM32 and Raspberry Pi telescope that guides users to deep-sky objects}{C / C++}
+\resumeItemListStart
+\resumeEntry{Owned the Raspberry Pi HUD and the STM32 encoder, IMU, and GPS drivers on a 4-person team, designing a C++ hardware abstraction layer that wraps each sensor in a uniform peripheral class with RAII-managed bus handles}
+\resumeEntry{Wrote a templated running-average filter over angular sensor readings that stays accurate across wraparound}
+\resumeEntry{Designed a framed binary UART protocol with CRC-16 integrity checks and a streaming decoder that resynchronizes after corruption, giving ordered, validated, and reliable telemetry between the two processors}
+\resumeEntry{Architected the Pi heads-up display around a finite state machine, utilizing a background serial decoding thread integrated with a mutex-guarded shared state that drives a 60 fps Raylib render loop}
+\resumeItemListEnd
+\projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Personalized job-posting alert service built on a serverless, event-driven scraping pipeline}{Python}
+\resumeItemListStart
+\resumeEntry{Architected a serverless pipeline that offloads enrichment and per-user classification to independently scaling SQS workers, keeping signup-driven classification load off the scan Lambda's fixed 5-minute budget}
+\resumeEntry{Re-architected the read path from multiple NoSQL lookups to a single Aurora DSQL query behind a thread-safe connection pool with optimistic-concurrency retries, cutting request latency from 5 seconds to under 1}
+\resumeEntry{Designed a URL-derived canonical key that resolves the same posting seen from multiple sources under different URLs, tuned to prefer occasional duplicate alerts over missed listings}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------------
+\section{Technical Skills}
+\resumeSubHeadingListStart
+\resumeSubItem{Programming Languages}
+{C++, Go, Python, C, TypeScript, Java, SQL}
+\resumeSubItem{Frameworks and Technologies}
+{ROS2, STM32 bare-metal, Linux, Docker, gRPC, Protobuf, MessagePack, Kafka, Flink, Spark, Redis, WebSockets, FastAPI, Flask, Spring Boot, PostgreSQL, MySQL, SQLite, Amazon Aurora DSQL, Three.js}
+\resumeSubItem{Concepts}
+{Object-Oriented Design, Distributed Systems, Concurrency, RESTful and WebSocket APIs}
+\resumeSubItem{Tools and Platforms}
+{Git, GitHub Actions, CMake, AWS (Lambda, SQS), Google Cloud, Grafana, Shell, \LaTeX}
+\resumeSubHeadingListEnd
+
+\end{document}
