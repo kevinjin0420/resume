@@ -165,7 +165,7 @@
 \resumeEntry{Designed a framed binary UART protocol with CRC-16 integrity checks and a streaming decoder that resynchronizes after corruption, giving ordered, validated, and reliable telemetry between the two processors}
 \resumeEntry{Architected the Pi heads-up display around a finite state machine, utilizing a background serial decoding thread integrated with a mutex-guarded shared state that drives a 60 fps Raylib render loop}
 \resumeItemListEnd
-\projectHeading{Job Alerts}{\href{https://github.com/kevinjin0420/job-alerts}{github.com/kevinjin0420/job-alerts}}{Personalized job-posting alert service built on a serverless, event-driven scraping pipeline}{Python}
+\projectHeading{Job Alerts}{}{Personalized job-posting alert service built on a serverless, event-driven scraping pipeline}{Python}
 \resumeItemListStart
 \resumeEntry{Architected a serverless pipeline that offloads enrichment and per-user classification to independently scaling SQS workers, keeping signup-driven classification load off the scan Lambda's fixed 5-minute budget}
 \resumeEntry{Re-architected the read path from multiple NoSQL lookups to a single Aurora DSQL query behind a thread-safe connection pool with optimistic-concurrency retries, cutting request latency from 5 seconds to under 1}
